@@ -11,7 +11,7 @@ let request = require('request')
           return resolve(body)
         }
   
-        return reject(new Errors.SearchError())
+        return reject('No data for facet filters')
       })
     })
   }
@@ -27,7 +27,7 @@ let request = require('request')
           return resolve(body)
         }
   
-        return reject(new Errors.SearchError())
+        return reject('No data for facet filters')
       })
     })
   }
@@ -44,7 +44,7 @@ let request = require('request')
           return resolve(body)
         }
   
-        return reject(new Errors.SearchError())
+        return reject('No data for search')
       })
     })
   }
@@ -61,7 +61,7 @@ let request = require('request')
           return resolve(body)
         }
   
-        return reject(new Errors.SearchError())
+        return reject('No data for search')
       })
     })
   }

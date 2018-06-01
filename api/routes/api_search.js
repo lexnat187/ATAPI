@@ -1,7 +1,8 @@
 // import express from 'express'
 let express = require('express')
+let STATUS = require('http-status-codes')
 
-let memCache = require('memory-cache')
+let mcache = require('memory-cache')
 
 const atSearchService = require('../services/atSearch')
 
