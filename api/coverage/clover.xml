@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1527844975096" clover="3.2.0">
-  <project timestamp="1527844975096" name="All files">
-    <metrics statements="14" coveredstatements="8" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="4" elements="28" coveredelements="12" complexity="0" loc="14" ncloc="14" packages="1" files="1" classes="1">
+<coverage generated="1527847856041" clover="3.2.0">
+  <project timestamp="1527847856041" name="All files">
+    <metrics statements="26" coveredstatements="22" conditionals="16" coveredconditionals="12" methods="12" coveredmethods="12" elements="54" coveredelements="46" complexity="0" loc="26" ncloc="26" packages="1" files="1" classes="1">
       <file name="atSearch.js" path="/mnt/c/Users/alexw_000/Documents/Development/Tech Tests/Al Tayer/ATAPI/api/services/atSearch.js">
-        <metrics statements="14" coveredstatements="8" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <metrics statements="26" coveredstatements="22" conditionals="16" coveredconditionals="12" methods="12" coveredmethods="12"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="10" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="11" count="0" type="stmt"/>
+        <line num="10" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="26" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="27" count="0" type="stmt"/>
+        <line num="26" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="27" count="1" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="43" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="60" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
       </file>
     </metrics>
   </project>
