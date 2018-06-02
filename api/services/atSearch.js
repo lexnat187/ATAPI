@@ -52,6 +52,7 @@ let request = require('request')
   const executeMandPSearch = (searchBody, colour) => {
   
     // curl -X POST https://www.mamasandpapas.ae/search/full\?searchString\=\&filters\[availableColors\]\[\]\=Red -g
+
     return new Promise((resolve, reject) => {
       request({
         url: `https://www.mamasandpapas.ae/search/full\?searchString\=${searchBody}\&filters\[availableColors\]\[\]\=${colour}`,
