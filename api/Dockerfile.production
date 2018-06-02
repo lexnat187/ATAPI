@@ -1,0 +1,18 @@
+FROM node:8.4-alpine
+RUN apk add --no-cache bash git
+
+EXPOSE 3003
+CMD ["yarn", "start"]
+
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
+
+COPY package.json /opt/app
+COPY yarn.lock /opt/app
+RUN yarn global add serve
+RUN yarn install
+
+COPY . /opt/app
+RUN yarn build
+
+CMD serve -s build
