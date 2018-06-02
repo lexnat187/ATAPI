@@ -86,5 +86,11 @@ describe('Search Service', () => {
             let searchJSON = JSON.parse(response)
             expect(searchJSON.pagination.totalHits).toEqual(34)   
         })
+
+        it('should retreive the search results for M and P with a default colour facet filter', async () => {
+            let response = await atSearchService.executeMandPSearch('Bear', 'default')
+            let searchJSON = JSON.parse(response)
+            expect(searchJSON.pagination.totalHits).toEqual(12)   
+        })
     }
 )
