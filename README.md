@@ -30,6 +30,28 @@ To verify code coverage run the following
 yarn coverage
 ```
 
+## Docker
+
+All repositories have been dockerised and can be started by running the docker compose within the API folder
+
+```
+docker-compose up
+```
+
+Stop the containers using
+
+```
+docker-compose down
+```
+
+## Using the apps
+
+Each docker container will spool up and attach to a different port
+
+API: localhost:3003
+MandP: localhost: 3001
+Ounass: localhost:3002
+
 ## Author
 
 * **Alexander Walker**
