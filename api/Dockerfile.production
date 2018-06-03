@@ -13,6 +13,3 @@ RUN yarn global add serve
 RUN yarn install
 
 COPY . /opt/app
-RUN yarn build
-
-CMD serve -s build
