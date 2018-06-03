@@ -1,2 +1,5 @@
 # dependencies
 /node_modules
+
+# Docker build folder
+.DS_Store
