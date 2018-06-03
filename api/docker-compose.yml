@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.production
+    image: at-api:latest
+    ports:
+      - "3003:3003"
+  mandp:
+    build: 
+      context: ./
+      dockerfile: ../../ATM-P/mandp/Dockerfile.production
+    image: at-mandp:latest
+    ports:
+      - "3001:3000"
+  ouanas:
+    build: 
+      context: ./
+      dockerfile: ../../ATOUNASS/ounass/Dockerfile.production
+    image: at-ounass:latest
+    ports:
+      - "3002:3000"
+volumes:
+  logvolume01: {}
