@@ -78,7 +78,7 @@ describe('Search Service', () => {
         it('should retreive the search results for Ounass', async () => {
               let response = await atSearchService.executeOunassSearch('Shoe', 'Red')
               let searchJSON = JSON.parse(response)
-              expect(searchJSON.pagination.totalHits).toEqual(853)    
+              expect(searchJSON.pagination.totalHits).toEqual(854)    
         })
 
         it('should retreive the search results for M and P', async () => {
