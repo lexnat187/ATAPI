@@ -34,8 +34,6 @@ api.get('/ounassfacets', cache(10), (req, res, next) => {
       res.status(STATUS.OK).json(facetResults)
     })
     .catch(next)
-
-  // res.send('respond with a resource')
 })
 
 
@@ -47,8 +45,6 @@ api.get('/mandpfacets', cache(10), (req, res, next) => {
       res.status(STATUS.OK).json(facetResults)
     })
     .catch(next)
-
-  // res.send('respond with a resource')
 })
 
 /* POST search M and P. */
@@ -61,8 +57,6 @@ api.post('/mandpsearch', cache(10), (req, res, next) => {
       res.status(STATUS.OK).json(results)
     })
     .catch(next)
-
-  // res.send('respond with a resource')
 })
 
 /* POST search Ounass. */
@@ -74,8 +68,6 @@ api.post('/ounasssearch', cache(10), (req, res, next) => {
       res.status(STATUS.OK).json(results)
     })
     .catch(next)
-
-  // res.send('respond with a resource')
 })
 
 module.exports = api
