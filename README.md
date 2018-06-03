@@ -32,7 +32,7 @@ yarn coverage
 
 ## Docker
 
-All repositories have been dockerised and can be started by running the docker compose within the API folder
+All repositories have been dockerised and can be started by running the docker compose function. Check out each repository into the same root directory and run the following command within the API folder:
 
 ```
 docker-compose up
@@ -44,13 +44,31 @@ Stop the containers using
 docker-compose down
 ```
 
+If the yarn registry returns errors while using docker-compose then please build each image from ATAPI, ATM-P and ATOUNASS separately then run the docker-compose up command again
+
+## Folder structure
+
+ * root
+    * ATAPI
+    * ATCOMMON (not required for running)
+    * ATM-P
+    * ATOUNASS
+
 ## Using the apps
 
 Each docker container will spool up and attach to a different port
 
-API: localhost:3003
-MandP: localhost: 3001
-Ounass: localhost:3002
+```
+API: http://localhost:3003
+```
+
+```
+MandP: http://localhost: 3001
+```
+
+```
+Ounass: http://localhost:3002
+```
 
 ## Author
 
