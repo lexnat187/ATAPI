@@ -6,6 +6,12 @@ let mcache = require('memory-cache')
 
 const atSearchService = require('../services/atSearch')
 
+const asyncMiddleware = fn =>
+  (req, res, next) => {
+    Promise.resolve(fn(req, res, next))
+      .catch(next)
+  }
+
 let api = express.Router()
 
 let cache = (duration) => {
@@ -27,47 +33,32 @@ let cache = (duration) => {
 }
 
 /* GET Ounass search facets. */
-api.get('/ounassfacets', cache(10), (req, res, next) => {
-
-  atSearchService.getOunassSearchFacets()
-    .then((facetResults) => {
-      res.status(STATUS.OK).json(facetResults)
-    })
-    .catch(next)
-})
+api.get('/ounassfacets', cache(10), asyncMiddleware (async (req, res, next) => {
+    let facetResults = await atSearchService.getOunassSearchFacets()
+    res.status(STATUS.OK).json(facetResults)
+}))
 
 
 /* GET M&P search facets. */
-api.get('/mandpfacets', cache(10), (req, res, next) => {
-
-  atSearchService.getMandPSearchFacets()
-    .then((facetResults) => {
-      res.status(STATUS.OK).json(facetResults)
-    })
-    .catch(next)
-})
+api.get('/mandpfacets', cache(10), asyncMiddleware (async (req, res, next) => {
+    let facetResults = await atSearchService.getMandPSearchFacets()
+    res.status(STATUS.OK).json(facetResults)
+}))
 
 /* POST search M and P. */
-api.post('/mandpsearch', cache(10), (req, res, next) => {
-
-  const searchBody = req.body.search
-  const colour = req.body.colour
-  atSearchService.executeMandPSearch(searchBody, colour)
-    .then((results) => {
-      res.status(STATUS.OK).json(results)
-    })
-    .catch(next)
-})
+api.post('/mandpsearch', cache(10), asyncMiddleware (async (req, res, next) => {
+    const searchBody = req.body.search
+    const colour = req.body.colour
+    let results = await atSearchService.executeMandPSearch(searchBody, colour)
+    res.status(STATUS.OK).json(results)
+}))
 
 /* POST search Ounass. */
-api.post('/ounasssearch', cache(10), (req, res, next) => {
-  const searchBody = req.body.search
-  const colour = req.body.colour
-  atSearchService.executeOunassSearch(searchBody, colour)
-    .then((results) => {
-      res.status(STATUS.OK).json(results)
-    })
-    .catch(next)
-})
+api.post('/ounasssearch', cache(10), asyncMiddleware (async (req, res, next) => {
+    const searchBody = req.body.search
+    const colour = req.body.colour
+    let results = await atSearchService.executeOunassSearch(searchBody, colour)
+    res.status(STATUS.OK).json(results)
+}))
 
 module.exports = api
