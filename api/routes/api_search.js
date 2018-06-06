@@ -28,46 +28,50 @@ let cache = (duration) => {
 
 /* GET Ounass search facets. */
 api.get('/ounassfacets', cache(10), (req, res, next) => {
-
-  atSearchService.getOunassSearchFacets()
-    .then((facetResults) => {
-      res.status(STATUS.OK).json(facetResults)
-    })
-    .catch(next)
+  try {
+    let facetResults = await atSearchService.getOunassSearchFacets()
+    res.status(STATUS.OK).json(facetResults)
+  } catch (err) {
+    res.status(STATUS.NOT_FOUND)
+  }
 })
 
 
 /* GET M&P search facets. */
 api.get('/mandpfacets', cache(10), (req, res, next) => {
 
-  atSearchService.getMandPSearchFacets()
-    .then((facetResults) => {
+try {
+  let facetResults = await atSearchService.getMandPSearchFacets()
       res.status(STATUS.OK).json(facetResults)
-    })
-    .catch(next)
+  } catch (err) {
+    res.status(STATUS.NOT_FOUND)
+  }
 })
 
 /* POST search M and P. */
-api.post('/mandpsearch', cache(10), (req, res, next) => {
+api.post('/mandpsearch', cache(10), async (req, res, next) => {
 
-  const searchBody = req.body.search
-  const colour = req.body.colour
-  atSearchService.executeMandPSearch(searchBody, colour)
-    .then((results) => {
-      res.status(STATUS.OK).json(results)
-    })
-    .catch(next)
+  try {
+    const searchBody = req.body.search
+    const colour = req.body.colour
+    let results = await atSearchService.executeMandPSearch(searchBody, colour)
+
+    res.status(STATUS.OK).json(results)
+  } catch (err){
+    res.status(STATUS.NOT_FOUND)
+  }
 })
 
 /* POST search Ounass. */
-api.post('/ounasssearch', cache(10), (req, res, next) => {
-  const searchBody = req.body.search
-  const colour = req.body.colour
-  atSearchService.executeOunassSearch(searchBody, colour)
-    .then((results) => {
-      res.status(STATUS.OK).json(results)
-    })
-    .catch(next)
+api.post('/ounasssearch', cache(10), async (req, res, next) => {
+  try {
+    const searchBody = req.body.search
+    const colour = req.body.colour
+    let results = await atSearchService.executeOunassSearch(searchBody, colour)
+    res.status(STATUS.OK).json(results)
+  } catch (err) {
+    res.status(STATUS.NOT_FOUND)
+  }
 })
 
 module.exports = api
