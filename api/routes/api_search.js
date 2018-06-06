@@ -16,7 +16,11 @@ let api = express.Router()
 
 let cache = (duration) => {
   return (req, res, next) => {
-    let key = '__express__' + req.originalUrl || req.url
+    let searchBody = req.body.search ? '/' + req.body.search : ''
+    let colour = req.body.colour ? '/' + req.body.colour : ''
+
+    let key = '__express__' + (req.originalUrl || req.url) + searchBody + colour
+
     let cachedBody = mcache.get(key)
     if (cachedBody) {
       res.send(cachedBody)
@@ -33,20 +37,20 @@ let cache = (duration) => {
 }
 
 /* GET Ounass search facets. */
-api.get('/ounassfacets', cache(10), asyncMiddleware (async (req, res, next) => {
+api.get('/ounassfacets', cache(100), asyncMiddleware (async (req, res, next) => {
     let facetResults = await atSearchService.getOunassSearchFacets()
     res.status(STATUS.OK).json(facetResults)
 }))
 
 
 /* GET M&P search facets. */
-api.get('/mandpfacets', cache(10), asyncMiddleware (async (req, res, next) => {
+api.get('/mandpfacets', cache(100), asyncMiddleware (async (req, res, next) => {
     let facetResults = await atSearchService.getMandPSearchFacets()
     res.status(STATUS.OK).json(facetResults)
 }))
 
 /* POST search M and P. */
-api.post('/mandpsearch', cache(10), asyncMiddleware (async (req, res, next) => {
+api.post('/mandpsearch', cache(100), asyncMiddleware (async (req, res, next) => {
     const searchBody = req.body.search
     const colour = req.body.colour
     let results = await atSearchService.executeMandPSearch(searchBody, colour)
@@ -54,7 +58,7 @@ api.post('/mandpsearch', cache(10), asyncMiddleware (async (req, res, next) => {
 }))
 
 /* POST search Ounass. */
-api.post('/ounasssearch', cache(10), asyncMiddleware (async (req, res, next) => {
+api.post('/ounasssearch', cache(100), asyncMiddleware (async (req, res, next) => {
     const searchBody = req.body.search
     const colour = req.body.colour
     let results = await atSearchService.executeOunassSearch(searchBody, colour)
