@@ -37,9 +37,9 @@ let cache = (duration) => {
 }
 
 /* GET Ounass search facets. */
-api.get('/ounassfacets', cache(100), asyncMiddleware (async (req, res, next) => {
+api.get('/ounassfacets', cache(1), asyncMiddleware (async (req, res, next) => {
     let facetResults = await atSearchService.getOunassSearchFacets()
-    res.status(STATUS.OK).json(facetResults)
+    res.status(STATUS.OK).send(facetResults)
 }))
 
 

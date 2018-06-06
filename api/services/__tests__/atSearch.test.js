@@ -67,29 +67,30 @@ describe('Search Service', () => {
 
         it('should retreive the facet filters for Ounass', async () => {
             let response = await atSearchService.getOunassSearchFacets()
-            expect(JSON.parse(response)).toEqual(expectedOunassJSON)
+            expect(response).toEqual(expectedOunassJSON)
         })
 
         it('should retreive the facet filters for M and P', async () => {
             let response = await atSearchService.getMandPSearchFacets()
-            expect(JSON.parse(response)).toEqual(expectedMandPJSON)
+            expect(response).toEqual(expectedMandPJSON)
         })
 
         it('should retreive the search results for Ounass', async () => {
               let response = await atSearchService.executeOunassSearch('Shoe', 'Red')
-              let searchJSON = JSON.parse(response)
+              let searchJSON = response
               expect(searchJSON.pagination.totalHits).toEqual(854)    
         })
 
         it('should retreive the search results for M and P', async () => {
             let response = await atSearchService.executeMandPSearch('Bear', 'Red')
-            let searchJSON = JSON.parse(response)
+            let searchJSON = await response.json()
+            // console.log(response)
             expect(searchJSON.pagination.totalHits).toEqual(34)   
         })
 
         it('should retreive the search results for M and P with a default colour facet filter', async () => {
             let response = await atSearchService.executeMandPSearch('Bear', 'default')
-            let searchJSON = JSON.parse(response)
+            let searchJSON = response
             expect(searchJSON.pagination.totalHits).toEqual(12)   
         })
     }
