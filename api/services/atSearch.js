@@ -1,70 +1,65 @@
-let request = require('request')
+const axios = require('axios')
 
-   const getOunassSearchFacets = () => {
-  
-    return new Promise((resolve, reject) => {
-      request({
-        url: 'https://www.ounass.ae/directory/colors',
-        method: 'GET'
-      }, (err, response, body) => {
-        if (response && response.statusCode === 200) {
-          return resolve(body)
+   const getOunassSearchFacets = async () => {
+    try {
+        let response = await axios.get('https://www.ounass.ae/directory/colors')
+        if (response && response.status === 200) {
+          return response.data
+        } else {
+          return 'No data for facet filters'
         }
-  
-        return reject('No data for facet filters')
-      })
-    })
+    } catch (error) {
+        return 'No data for facet filters'
+    }
+
   }
 
-  const getMandPSearchFacets = () => {
-  
-    return new Promise((resolve, reject) => {
-      request({
-        url: 'https://www.mamasandpapas.ae/directory/colors',
-        method: 'GET'
-      }, (err, response, body) => {
-        if (response && response.statusCode === 200) {
-          return resolve(body)
-        }
-  
-        return reject('No data for facet filters')
-      })
-    })
+  const getMandPSearchFacets = async () => {
+    try {
+      let response = await axios.get('https://www.mamasandpapas.ae/directory/colors')
+      if (response && response.status === 200) {
+        return response.data
+      } else {
+        return 'No data for facet filters'
+      }
+    } catch (error) {
+        return 'No data for facet filters'
+    }
+
   }
 
-  const executeOunassSearch = (searchBody, colour) => {
+  const executeOunassSearch = async (searchBody, colour) => {
   
     // curl -X POST https://www.ounass.ae/search/full\?searchString\=\&filters\[availableColors\]\[\]\=Red -g 
-    return new Promise((resolve, reject) => {
-      request({
-        url: `https://www.ounass.ae/search/full\?searchString\=${searchBody}\&filters\[availableColors\]\[\]\=${colour} `,
-        method: 'POST'
-      }, (err, response, body) => {
-        if (response && response.statusCode === 200) {
-          return resolve(body)
-        }
-  
-        return reject('No data for search')
-      })
-    })
+    try {
+      let url = `https://www.ounass.ae/search/full\?searchString\=${searchBody}\&filters\[availableColors\]\[\]\=${colour} `
+      let response = await axios.post(url)
+      if (response && response.status === 200) {
+        return response.data
+      } else{
+        return 'No data for search'
+      }
+    } catch (error) {
+        return 'No data for search'
+    }
+
+
   }
 
-  const executeMandPSearch = (searchBody, colour) => {
+  const executeMandPSearch = async (searchBody, colour) => {
   
     // curl -X POST https://www.mamasandpapas.ae/search/full\?searchString\=\&filters\[availableColors\]\[\]\=Red -g
-
-    return new Promise((resolve, reject) => {
-      request({
-        url: `https://www.mamasandpapas.ae/search/full\?searchString\=${searchBody}\&filters\[availableColors\]\[\]\=${colour}`,
-        method: 'POST'
-      }, (err, response, body) => {
-        if (response && response.statusCode === 200) {
-          return resolve(body)
-        }
-  
-        return reject('No data for search')
-      })
-    })
+    try {
+      let url = `https://www.mamasandpapas.ae/search/full\?searchString\=${searchBody}\&filters\[availableColors\]\[\]\=${colour}`
+      let response = await axios.post(url)
+      if (response && response.status === 200) {
+        return response.data
+      } else {
+        return 'No data for search'
+      }
+    } catch (error) {
+        return 'No data for search'
+    }
   }
 
   module.exports = {
