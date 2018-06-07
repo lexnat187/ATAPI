@@ -67,30 +67,27 @@ describe('Search Service', () => {
 
         it('should retreive the facet filters for Ounass', async () => {
             let response = await atSearchService.getOunassSearchFacets()
-            expect(JSON.parse(response)).toEqual(expectedOunassJSON)
+            expect(response).toEqual(expectedOunassJSON)
         })
 
         it('should retreive the facet filters for M and P', async () => {
             let response = await atSearchService.getMandPSearchFacets()
-            expect(JSON.parse(response)).toEqual(expectedMandPJSON)
+            expect(response).toEqual(expectedMandPJSON)
         })
 
         it('should retreive the search results for Ounass', async () => {
-              let response = await atSearchService.executeOunassSearch('Shoe', 'Red')
-              let searchJSON = JSON.parse(response)
-              expect(searchJSON.pagination.totalHits).toEqual(854)    
+            let response = await atSearchService.executeOunassSearch('Shoe', 'Red')
+            expect(response.pagination.totalHits).toEqual(806)    
         })
 
         it('should retreive the search results for M and P', async () => {
             let response = await atSearchService.executeMandPSearch('Bear', 'Red')
-            let searchJSON = JSON.parse(response)
-            expect(searchJSON.pagination.totalHits).toEqual(34)   
+            expect(response.pagination.totalHits).toEqual(35)   
         })
 
         it('should retreive the search results for M and P with a default colour facet filter', async () => {
             let response = await atSearchService.executeMandPSearch('Bear', 'default')
-            let searchJSON = JSON.parse(response)
-            expect(searchJSON.pagination.totalHits).toEqual(12)   
+            expect(response.pagination.totalHits).toEqual(12)   
         })
     }
 )
