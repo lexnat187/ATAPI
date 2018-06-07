@@ -76,21 +76,17 @@ describe('Search Service', () => {
         })
 
         it('should retreive the search results for Ounass', async () => {
-              let response = await atSearchService.executeOunassSearch('Shoe', 'Red')
-            //   let searchJSON = JSON.parse(response)
-              expect(response.pagination.totalHits).toEqual(806)    
+            let response = await atSearchService.executeOunassSearch('Shoe', 'Red')
+            expect(response.pagination.totalHits).toEqual(806)    
         })
 
         it('should retreive the search results for M and P', async () => {
             let response = await atSearchService.executeMandPSearch('Bear', 'Red')
-            // let searchJSON = JSON.parse(response)
             expect(response.pagination.totalHits).toEqual(35)   
         })
 
         it('should retreive the search results for M and P with a default colour facet filter', async () => {
             let response = await atSearchService.executeMandPSearch('Bear', 'default')
-            // console.log('getting repsonse: ' + JSON.stringify(response, null, 2))
-            // let searchJSON = JSON.parse(response)
             expect(response.pagination.totalHits).toEqual(12)   
         })
     }
